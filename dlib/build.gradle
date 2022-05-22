@@ -1,0 +1,72 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+//    ndkVersion '24.0.8215888'
+    ndkVersion '21.4.7075529'
+//    ndkVersion '21.2.6472646'
+//    ndkVersion '21.0.6113669'
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        externalNativeBuild {
+            cmake {
+                //cppFlags "-std=c++11","-frtti", "-fexceptions"
+                arguments '-DANDROID_STL=c++_static'
+                arguments 'APP_STL=c++_static'
+                //cppFlags "-std=c++14"//; "-isysroot C:/Users/EDZ/AppData/Local/Android/Sdk/ndk/21.0.6113669/sysroot"
+            }
+        }
+
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'//, 'x86_64', 'x86'
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+            //arguments "-GAndroid Gradle - Ninja"
+//            version "3.23.1"
+//            version "3.18.1"
+        }
+    }
+
+    buildTypes {
+        release {}
+    }
+
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+
+    // Use prebilt *.so. Don't run ndk-build
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ["src/main/jniLibs"]
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:support-annotations:28.0.0'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
+    }
+}
+
+apply plugin: 'com.jakewharton.hugo'
