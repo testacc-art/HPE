@@ -6,6 +6,24 @@
 cmake_minimum_required(VERSION 3.4.1)
 project(dlab-lib LANGUAGES C CXX)
 
+#编译优化选项，重要！！！一定要设置好
+set(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -Ofast")
+set(CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS_RELEASE} -Ofast")
+
+set(CMAKE_C_FLAGS_DEBUG  "${CMAKE_C_FLAGS_DEBUG} -Ofast")
+set(CMAKE_C_FLAGS_RELEASE  "${CMAKE_C_FLAGS_RELEASE} -Ofast")
+
+#--------------------------------------------opencv
+#set(OPENCV_PREBUILT OpenCV-android-sdk/sdk/native/jni)
+## Opencv and it will use static import
+#set(ANDROID_NDK_ABI_NAME ${CMAKE_ANDROID_ARCH_ABI})
+#include(OpenCV-android-sdk/sdk/native/jni/OpenCVConfig.cmake)
+#
+#include_directories(${OpenCV_INCLUDE_DIRS})
+#include_directories(${CMAKE_SOURCE_DIR}/src/main/cpp/include)
+#include_directories(${CMAKE_SOURCE_DIR}/src/main/cpp/include/opencv)
+#--------------------------------------------opencvend
+
 #set(NAME "dlab-lib")
 #set(PROJECT_NAME ${NAME})
 
@@ -111,7 +129,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11 -fexceptions -frtti")
 #add_subdirectory(${TOP_DIR}/LinearMath LinearMath_binary_dir)
 
 #add_subdirectory(dlib dlib_binary_dir)
-add_subdirectory(dlib)
+#add_subdirectory(dlib)
 #add_subdirectory(minilog minilog_binary_dir)
 #add_subdirectory(common common_binary_dir)
 #add_subdirectory(LinearMath LinearMath_binary_dir)
@@ -120,6 +138,8 @@ add_subdirectory(dlib)
 #add_subdirectory(minilog)
 #add_subdirectory(common)
 #add_subdirectory(LinearMath)
+
+#add_subdirectory(dlib)
 
 add_library(
         # Sets the name of the library.
