@@ -4,14 +4,16 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "com.beraldo.hpe"
+        applicationId "com.beraldo.hpe1"
         minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
-        release {}
+        release {
+            minifyEnabled false
+        }
     }
 }
 

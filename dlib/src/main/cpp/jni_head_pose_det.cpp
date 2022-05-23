@@ -2,7 +2,7 @@
 #include "bitmap2mat2bitmap.h"
 #include <jni.h>
 #include "log/logging.h"
-#include "head_pose_estimation.hpp"
+#include "head_pose_estimation.cpp"
 #include "LinearMath/Matrix3x3.h"
 
 using namespace std;
@@ -53,8 +53,7 @@ DLIB_JNI_METHOD(jniBitmapExtractFaceGazes)(JNIEnv* env, jobject thiz,
     cv::Mat bgrMat;
     jnicommon::ConvertBitmapToRGBAMat(env, bitmap, rgbaMat, true, false, false);
     cv::cvtColor(rgbaMat, bgrMat, cv::COLOR_RGBA2BGR);
-    
-    jint size = gHeadPoseEstimationPtr->detect(bgrMat);
+    jint size = gHeadPoseEstimationPtr->detect(bgrMat);//主要是这行代码耗时
     LOG(INFO) << "Number of faces detected: " << size;
 
     auto poses = gHeadPoseEstimationPtr->poses();

@@ -624,7 +624,7 @@ namespace dlib
         typename image_type
         >
     void scan_fhog_pyramid<Pyramid_type,feature_extractor_type>::
-    load (
+    load (//主要是这行代码耗时
         const image_type& img
     )
     {

@@ -18,9 +18,6 @@ set(CMAKE_VERBOSE_MAKEFILE on)
 set(libs "${CMAKE_SOURCE_DIR}/jniLibs")
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-
-#include_directories(${CMAKE_SOURCE_DIR}/src/main/cpp/include/opencv2)
-#include_directories(${CMAKE_SOURCE_DIR}/src/main/cpp/include/opencv2/core)
 #include_directories(${CMAKE_SOURCE_DIR}/src/main/cpp/include/opencv2)
 
 add_library(libopencv_calib3d STATIC IMPORTED )
@@ -132,6 +129,7 @@ add_library(
 
         # Provides a relative path to your source file(s).
 
+        #log
         log/logging.cc
         log/logging.h
 
@@ -143,19 +141,29 @@ add_library(
         LinearMath/Transform.h
         LinearMath/Vector3.h
 
+        #dlib
+        dlib/threads/threads_kernel_shared.cpp
+        dlib/threads/threads_kernel_shared.h
+        dlib/entropy_decoder/entropy_decoder_kernel_2.cpp
+        dlib/entropy_decoder/entropy_decoder_kernel_2.h
+        dlib/base64/base64_kernel_1.cpp
+        dlib/base64/base64_kernel_1.h
+        dlib/threads/threads_kernel_1.cpp
+        dlib/threads/threads_kernel_1.h
+        dlib/threads/threads_kernel_2.cpp
+        dlib/threads/threads_kernel_2.h
+
         #common
+        fileutils.h
+        types.h
         bitmap2mat2bitmap.cpp
         bitmap2mat2bitmap.h
-        fileutils.h
         rgb2yuv.cpp
         rgb2yuv.h
-        types.h
         yuv2rgb.cpp
         yuv2rgb.h
 
         #main
-        head_pose_estimation.cpp
-        head_pose_estimation.hpp
         imageutils_jni.cpp
         jni_head_pose_det.cpp
 )
@@ -193,22 +201,6 @@ find_library( # Sets the name of the path variable.
 #add_library(opencv_core STATIC IMPORTED)
 #include_directories(${PROJECT_SOURCE_DIR}/include
 #        include/opencv2)
-#include_directories(${PROJECT_SOURCE_DIR}/include
-#        include/opencv2/calib3d)
-#include_directories(${PROJECT_SOURCE_DIR}/include
-#        include/opencv2/core)
-#include_directories(${PROJECT_SOURCE_DIR}/include
-#        include/opencv2/core/cuda)
-#include_directories(${PROJECT_SOURCE_DIR}/include
-#        include/opencv2/core/cuda/detail)
-#include_directories(${PROJECT_SOURCE_DIR}/include
-#        include/opencv2/core/hal)
-#include_directories(${PROJECT_SOURCE_DIR}/include
-#        include/opencv2/features2d)
-#include_directories(${PROJECT_SOURCE_DIR}/include
-#        include/opencv2/imgproc)
-#include_directories(${PROJECT_SOURCE_DIR}/include
-#        include/opencv2/imgproc/detail)
 
 target_link_libraries(dlab-lib
         libopencv_java3
@@ -228,18 +220,7 @@ target_link_libraries(dlab-lib
         libopencv_video
         libopencv_videoio
         libopencv_videostab
-        dlib
-        ${log-lib}
+        #dlib
         jnigraphics
+        ${log-lib}
 )
-#[[target_link_libraries(
-        ${PROJECT_NAME}
-        #${log-lib}
-)]]
-#target_link_libraries(
-# Specifies the target library.
-#        dlib-lib
-        # Links the target library to the log library
-        # included in the NDK.
-#        ${log-lib}
-#        )

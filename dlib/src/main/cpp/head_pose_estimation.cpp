@@ -1,9 +1,6 @@
 #include "head_pose_estimation.hpp"
-#include "log/logging.h"
 #include <opencv2/calib3d/calib3d.hpp>
-#include <opencv2/imgproc/imgproc_c.h>
-#include <opencv2/imgproc/imgproc.hpp>
-//#include <opencv2/imgproc.hpp>
+#include "log/logging.h"
 
 using namespace dlib;
 using namespace std;
@@ -61,7 +58,7 @@ int HeadPoseEstimation::detect(cv::Mat& image) {
     // Set as current image
     current_image = dlib::cv_image<dlib::bgr_pixel>(image);
     // Perform detection
-    faces = detector(current_image);
+    faces = detector(current_image);//主要是这行代码耗时
     // Put the results into a collection, and update how many found
     shapes.clear();
     int count = 0;
@@ -80,34 +77,34 @@ int HeadPoseEstimation::detect(cv::Mat& image) {
         const full_object_detection& d = shapes[i];
 
         for (unsigned long i = 1; i <= 16; ++i)
-            cv::line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
+            line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
 
         for (unsigned long i = 28; i <= 30; ++i)
-            cv::line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
+            line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
 
         for (unsigned long i = 18; i <= 21; ++i)
-            cv::line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
+            line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
         for (unsigned long i = 23; i <= 26; ++i)
-            cv::line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
+            line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
         for (unsigned long i = 31; i <= 35; ++i)
-            cv::line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
-        cv::line(resultMat, toCv(d.part(30)), toCv(d.part(35)), color, 2, CV_AA);
+            line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
+        line(resultMat, toCv(d.part(30)), toCv(d.part(35)), color, 2, CV_AA);
 
         for (unsigned long i = 37; i <= 41; ++i)
-            cv::line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
-        cv::line(resultMat, toCv(d.part(36)), toCv(d.part(41)), color, 2, CV_AA);
+            line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
+        line(resultMat, toCv(d.part(36)), toCv(d.part(41)), color, 2, CV_AA);
 
         for (unsigned long i = 43; i <= 47; ++i)
-            cv::line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
-        cv::line(resultMat, toCv(d.part(42)), toCv(d.part(47)), color, 2, CV_AA);
+            line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
+        line(resultMat, toCv(d.part(42)), toCv(d.part(47)), color, 2, CV_AA);
 
         for (unsigned long i = 49; i <= 59; ++i)
-            cv::line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
-        cv::line(resultMat, toCv(d.part(48)), toCv(d.part(59)), color, 2, CV_AA);
+            line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
+        line(resultMat, toCv(d.part(48)), toCv(d.part(59)), color, 2, CV_AA);
 
         for (unsigned long i = 61; i <= 67; ++i)
-            cv::line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
-        cv::line(resultMat, toCv(d.part(60)), toCv(d.part(67)), color, 2, CV_AA);
+            line(resultMat, toCv(d.part(i)), toCv(d.part(i-1)), color, 2, CV_AA);
+        line(resultMat, toCv(d.part(60)), toCv(d.part(67)), color, 2, CV_AA);
     }
 
     return count;
@@ -253,9 +250,9 @@ head_pose HeadPoseEstimation::pose(size_t face_idx) const {
     std::vector<Point2f> projected_axes;
     projectPoints(axes, rvec, tvec, cameraMatrix, noArray(), projected_axes);
 
-    cv::line(resultMat, projected_axes[0], projected_axes[3], Scalar(255,0,0),2,CV_AA);
-    cv::line(resultMat, projected_axes[0], projected_axes[2], Scalar(0,255,0),2,CV_AA);
-    cv::line(resultMat, projected_axes[0], projected_axes[1], Scalar(0,0,255),2,CV_AA);
+    line(resultMat, projected_axes[0], projected_axes[3], Scalar(255,0,0),2,CV_AA);
+    line(resultMat, projected_axes[0], projected_axes[2], Scalar(0,255,0),2,CV_AA);
+    line(resultMat, projected_axes[0], projected_axes[1], Scalar(0,0,255),2,CV_AA);
 
     return pose;
 }

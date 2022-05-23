@@ -430,13 +430,13 @@ namespace dlib
         double adjust_threshold
     ) 
     {
-        scanner.load(img);
+        scanner.load(img);//主要是这行代码耗时
         std::vector<std::pair<double, rectangle> > dets;
         std::vector<rect_detection> dets_accum;
         for (unsigned long i = 0; i < w.size(); ++i)
         {
             const double thresh = w[i].w(scanner.get_num_dimensions());
-            scanner.detect(w[i].get_detect_argument(), dets, thresh + adjust_threshold);
+            scanner.detect(w[i].get_detect_argument(), dets, thresh + adjust_threshold);//主要是这行代码耗时
             for (unsigned long j = 0; j < dets.size(); ++j)
             {
                 rect_detection temp;
@@ -504,7 +504,7 @@ namespace dlib
     ) 
     {
         std::vector<rect_detection> dets;
-        (*this)(img,dets,adjust_threshold);
+        (*this)(img,dets,adjust_threshold);//主要是这行代码耗时
 
         std::vector<rectangle> final_dets(dets.size());
         for (unsigned long i = 0; i < dets.size(); ++i)
