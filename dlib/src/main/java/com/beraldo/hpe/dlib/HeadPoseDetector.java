@@ -6,7 +6,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import hugo.weaving.DebugLog;
+//import hugo.weaving.DebugLog;
 
 public class HeadPoseDetector {
     private static final String TAG = "HeadPoseDetector";
@@ -59,7 +59,7 @@ public class HeadPoseDetector {
     }
 
     @NonNull
-    @DebugLog
+    //@DebugLog
     public ArrayList<HeadPoseGaze> bitmapDetection(@NonNull Bitmap bitmap) {
         if (!initialized) {
             Log.e(TAG, " *** HeadPoseDetector is not initialized, use jniInit() ***");

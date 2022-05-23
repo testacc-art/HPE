@@ -53,7 +53,7 @@ import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-import hugo.weaving.DebugLog;
+//import hugo.weaving.DebugLog;
 
 public class CameraConnectionFragment extends Fragment {
     /**
@@ -286,7 +286,7 @@ public class CameraConnectionFragment extends Fragment {
      * @return The optimal {@code Size}, or an arbitrary one if none were big enough
      */
     @SuppressLint("LongLogTag")
-    @DebugLog
+    //@DebugLog
     private static Size chooseOptimalSize(
             final Size[] choices, final int width, final int height, final Size aspectRatio) {
         // Collect the supported resolutions that are at least as big as the preview Surface
@@ -397,7 +397,7 @@ public class CameraConnectionFragment extends Fragment {
      * @param width  The width of available size for camera preview
      * @param height The height of available size for camera preview
      */
-    @DebugLog
+    //@DebugLog
     @SuppressLint("LongLogTag")
     private void setUpCameraOutputs(final int width, final int height) {
         final Activity activity = getActivity();
@@ -481,7 +481,7 @@ public class CameraConnectionFragment extends Fragment {
      * Opens the camera specified by {@link CameraConnectionFragment#cameraId}.
      */
     @SuppressLint("LongLogTag")
-    @DebugLog
+    //@DebugLog
     private void openCamera(final int width, final int height) {
         setUpCameraOutputs(width, height);
         configureTransform(width, height);
@@ -506,7 +506,7 @@ public class CameraConnectionFragment extends Fragment {
     /**
      * Closes the current {@link CameraDevice}.
      */
-    @DebugLog
+    //@DebugLog
     private void closeCamera() {
         try {
             cameraOpenCloseLock.acquire();
@@ -535,7 +535,7 @@ public class CameraConnectionFragment extends Fragment {
     /**
      * Starts a background thread and its {@link Handler}.
      */
-    @DebugLog
+    //@DebugLog
     private void startBackgroundThread() {
         backgroundThread = new HandlerThread("ImageListener");
         backgroundThread.start();
@@ -550,7 +550,7 @@ public class CameraConnectionFragment extends Fragment {
      * Stops the background thread and its {@link Handler}.
      */
     @SuppressLint("LongLogTag")
-    @DebugLog
+    //@DebugLog
     private void stopBackgroundThread() {
         backgroundThread.quitSafely();
         inferenceThread.quitSafely();
@@ -571,7 +571,7 @@ public class CameraConnectionFragment extends Fragment {
      * Creates a new {@link CameraCaptureSession} for camera preview.
      */
     @SuppressLint("LongLogTag")
-    @DebugLog
+    //@DebugLog
     private void createCameraPreviewSession() {
         try {
             final SurfaceTexture texture = textureView.getSurfaceTexture();
@@ -652,7 +652,7 @@ public class CameraConnectionFragment extends Fragment {
      * @param viewWidth  The width of `mTextureView`
      * @param viewHeight The height of `mTextureView`
      */
-    @DebugLog
+    //@DebugLog
     private void configureTransform(final int viewWidth, final int viewHeight) {
         final Activity activity = getActivity();
         if (textureView == null || previewSize == null || activity == null) {

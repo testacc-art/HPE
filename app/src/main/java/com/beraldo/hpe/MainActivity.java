@@ -25,7 +25,7 @@ import com.beraldo.hpe.utils.FileUtils;
 
 import java.io.File;
 
-import hugo.weaving.DebugLog;
+//import hugo.weaving.DebugLog;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_PERMISSION = 2;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param activity
      */
-    @DebugLog
+    //@DebugLog
     private static boolean verifyPermissions(Activity activity) {
         // Check if we have write permission
         int write_permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /* Checks if external storage is available for read and write */
-    @DebugLog
+    //@DebugLog
     private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /* Checks if external storage is available to at least read */
-    @DebugLog
+    //@DebugLog
     private boolean isExternalStorageReadable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state) ||
