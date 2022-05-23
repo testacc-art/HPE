@@ -42,9 +42,7 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 #define DLIB_JNI_METHOD(METHOD_NAME) \
   Java_com_beraldo_hpe_dlib_HeadPoseDetector_##METHOD_NAME
 
-jint JNIEXPORT
-
-DLIB_JNI_METHOD(jniBitmapExtractFaceGazes)(JNIEnv* env, jobject thiz,
+jint JNIEXPORT JNICALL DLIB_JNI_METHOD(jniBitmapExtractFaceGazes)(JNIEnv* env, jobject thiz,
             jobject bitmap,
 					  jobject gazesList) {
 
@@ -110,9 +108,7 @@ DLIB_JNI_METHOD(jniBitmapExtractFaceGazes)(JNIEnv* env, jobject thiz,
   } else return JNI_ERR;
 }
 
-jint JNIEXPORT
-
-DLIB_JNI_METHOD(jniInit)(JNIEnv* env, jclass thiz,
+jint JNIEXPORT JNICALL DLIB_JNI_METHOD(jniInit)(JNIEnv* env, jclass thiz,
             jstring landmarkPath,
             jint mode,
             jfloat fx,
@@ -169,9 +165,7 @@ DLIB_JNI_METHOD(jniInit)(JNIEnv* env, jclass thiz,
   return JNI_OK;
 }
 
-jint JNIEXPORT
-
-DLIB_JNI_METHOD(jniDeInit)(JNIEnv* env, jclass thiz) {
+jint JNIEXPORT JNICALL DLIB_JNI_METHOD(jniDeInit)(JNIEnv* env, jclass thiz) {
   gHeadPoseEstimationPtr.reset();
   env->DeleteGlobalRef(HeadPoseGaze);
   env->DeleteGlobalRef(ArrayList);

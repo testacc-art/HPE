@@ -8,9 +8,7 @@
  */
 
 #include "bitmap2mat2bitmap.h"
-#include "head_pose_estimation.hpp"
-#include <opencv2/core/base.hpp>
-#include <android/bitmap.h>
+#include "log/logging.h"
 
 namespace jnicommon{
 
